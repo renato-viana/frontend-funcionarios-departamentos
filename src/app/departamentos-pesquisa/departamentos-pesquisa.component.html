@@ -1,0 +1,64 @@
+<div class="p-grid p-fluid">
+  <!-- Barra de Pesquisa -->
+  <div class="p-col-12 p-md-8 p-lg-6">
+    <div class="p-inputgroup">
+      <input
+        type="text"
+        pInputText
+        placeholder="Pesquisar departamento..."
+        [(ngModel)]="searchText"
+        (input)="filterDepartamentos()"
+      />
+      <button type="button" pButton icon="pi pi-search"></button>
+    </div>
+  </div>
+
+  <!-- Tabela de Listagem de Departamentos -->
+  <div class="p-col-12">
+    <p-table [value]="filteredDepartamentos" [rows]="5" [paginator]="true">
+      <ng-template pTemplate="header">
+        <tr>
+          <th scope="col">ID</th>
+          <th scope="col">Nome do Departamento</th>
+          <th scope="col">Ações</th>
+        </tr>
+      </ng-template>
+      <ng-template pTemplate="body" let-departamento>
+        <tr>
+          <td>{{ departamento.id }}</td>
+          <td>{{ departamento.nomeDepartamento }}</td>
+          <td>
+            <button
+              pButton
+              type="button"
+              icon="pi pi-pencil"
+              pTooltip="Editar"
+              class="p-button-rounded p-button-warning"
+              [routerLink]="['/departamentos', departamento.id]"
+            ></button>
+            <button
+              pButton
+              type="button"
+              icon="pi pi-trash"
+              pTooltip="Excluir"
+              class="p-button-rounded p-button-danger"
+              (click)="excluirDepartamento(departamento.id)"
+            ></button>
+          </td>
+        </tr>
+      </ng-template>
+    </p-table>
+  </div>
+
+  <!-- Botão "Novo Departamento" -->
+  <div class="p-col-12 p-text-right">
+    <button
+      type="button"
+      pButton
+      label="Novo Departamento"
+      icon="pi pi-plus"
+      class="p-button-success"
+      [routerLink]="['/departamentos/novo']"
+    ></button>
+  </div>
+</div>

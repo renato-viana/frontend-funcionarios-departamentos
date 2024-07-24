@@ -1,0 +1,33 @@
+<div class="navbar p-shadow-3 p-d-flex p-ai-center p-jc-between">
+  <button
+    pButton
+    type="button"
+    icon="pi pi-bars"
+    (click)="toggleMenu()"
+    class="p-button-rounded p-button-text navbar-button"
+  ></button>
+  <span class="navbar-title">Funcionários e Departamentos</span>
+</div>
+
+<p-sidebar [(visible)]="displayMenu" position="right" [baseZIndex]="10000">
+  <h3>Usuário</h3>
+  <ul class="p-m-0 p-p-0">
+    <li class="p-mb-2">
+      <button
+        pButton
+        type="button"
+        label="Departamentos"
+        class="p-button-text"
+        (click)="navegarParaDepartamentos()"
+      ></button>
+    </li>
+    <li>
+      <button
+        pButton
+        type="button"
+        label="Funcionários"
+        class="p-button-text"
+      ></button>
+    </li>
+  </ul>
+</p-sidebar>

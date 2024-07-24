@@ -1,0 +1,74 @@
+<div class="container p-shadow-3 p-p-4">
+  <form
+    autocomplete="off"
+    #departamentoForm="ngForm"
+    (ngSubmit)="salvar(departamentoForm)"
+  >
+    <div class="p-grid p-fluid">
+      <div class="p-col-12">
+        <h1 class="form-title">
+          {{ isEdit ? "Editando" : "Novo" }} Departamento
+        </h1>
+      </div>
+
+      <div class="p-col-12">
+        <label for="nomeDepartamento" class="form-label"
+          >Nome do Departamento</label
+        >
+        <input
+          id="nomeDepartamento"
+          type="text"
+          pInputText
+          name="nomeDepartamento"
+          [(ngModel)]="departamento.nomeDepartamento"
+          required
+          minlength="2"
+          #nomeDepartamento="ngModel"
+          class="p-d-block form-input"
+        />
+        <div
+          *ngIf="
+            nomeDepartamento.invalid &&
+            (nomeDepartamento.dirty || nomeDepartamento.touched)
+          "
+          class="error-message"
+        >
+          <small class="p-error" *ngIf="nomeDepartamento.errors?.['required']"
+            >O nome do departamento é obrigatório.</small
+          >
+          <small class="p-error" *ngIf="nomeDepartamento.errors?.['minlength']"
+            >O nome do departamento deve ter pelo menos 2 caracteres.</small
+          >
+        </div>
+      </div>
+
+      <div class="p-col-12 p-d-flex p-jc-end p-mt-4 button-group">
+        <button
+          type="submit"
+          pButton
+          label="Salvar"
+          icon="pi pi-check"
+          class="p-button-success p-mr-2"
+          [disabled]="departamentoForm.invalid"
+        ></button>
+        <button
+          type="button"
+          pButton
+          label="Novo"
+          icon="pi pi-plus"
+          class="p-button-secondary p-mr-2"
+          (click)="novoDepartamento(departamentoForm)"
+        ></button>
+      </div>
+      <div class="p-col-12 p-d-flex p-jc-center p-mt-2">
+        <a
+          routerLink="/departamentos"
+          pButton
+          label="Voltar para a pesquisa"
+          icon="pi pi-arrow-left"
+          class="p-button-secondary"
+        ></a>
+      </div>
+    </div>
+  </form>
+</div>
